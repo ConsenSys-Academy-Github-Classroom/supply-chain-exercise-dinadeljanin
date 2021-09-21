@@ -9,14 +9,14 @@ const contractDefn = ca =>
 const items = (ca) => {
   const item = contractDefn(ca).nodes.find((n) => n.name === "Item");
   if (!item) return null;
-
   return item
     .members
     .map((t) => ({
       name: t.name,
       nodeType: t.nodeType,
       stateVariable: t.stateVariable,
-      type: t.typeName.name,
+      // pathNode is required to properly detect user defined enum types with latest Truffle artifacts
+      type: t.typeName.hasOwnProperty("pathNode") ? t.typeName.pathNode.name : t.typeName.name,
       mutability: t.typeName.stateMutability,
     }));
 };

@@ -70,6 +70,7 @@ contract("SupplyChain", function (accounts) {
 
       before(() => {
         subjectStruct = ItemStruct(SupplyChain);
+        // console.log(subjectStruct)
         assert(
           subjectStruct !== null, 
           "The contract should define an `Item Struct`"
